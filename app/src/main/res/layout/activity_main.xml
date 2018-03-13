@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="io.github.hamzaanis.cryptocalculator.MainActivity">
 
+
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="30dp"
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="numberDecimal"
-        android:text="Nano"
-        android:textAlignment="center"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="95dp" />
+        android:hint="Enter Nano Currency" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/editText"
         android:text="Convert"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="175dp" />
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="Convert"
+        />
 
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="73dp"
-        tools:layout_editor_absoluteY="255dp" />
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="250dp"
+        android:id="@+id/text"
+        android:layout_below="@+id/button"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+
+
+        />
+</RelativeLayout>
