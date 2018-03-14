@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         Double usdPrice = Double.parseDouble(jobject.getString("price_usd"));
                         Double btcPrice = Double.parseDouble(jobject.getString("price_btc"));
                         System.out.println("It is : " + btcPrice + " " + usdPrice);
-                        String display = "PRICE RATES:\n\t\t\tUSD PRICE: " + usdPrice + " \n\t\t\tBTC PRICE: " + btcPrice + "\n\nConversion: " + NeoValue + "NEO " + "\n\t\t\tUSD PRICE: " + NeoValue * usdPrice + " \n\t\t\tBTC PRICE: " + NeoValue * btcPrice;
+                        String display = "NEO PRICE:\nUSD PRICE: " + usdPrice + " \nBTC PRICE: " + btcPrice + "\n\nConversion of " + NeoValue + "NEO " + "\nUSD PRICE: " + NeoValue * usdPrice + " \nBTC PRICE: " + NeoValue * btcPrice;
                         convertvalue.setText(display);
 
                     } catch (JSONException e) {
