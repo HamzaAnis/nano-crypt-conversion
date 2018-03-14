@@ -22,6 +22,7 @@ EditText DecimalValue;
     }
 
     public void Convert(View view) {
+
         if (!DecimalValue.getText().toString().equals("")){
             convertvalue.setText(DecimalValue.getText().toString());
             DecimalValue.setText("");
