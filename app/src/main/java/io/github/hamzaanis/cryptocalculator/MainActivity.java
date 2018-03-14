@@ -48,23 +48,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Convert(View view) throws IOException, JSONException {
-        String url = "https://api.coinmarketcap.com/v1/ticker/neo/";
-        final RequestQueue ExampleRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest ExampleStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                System.out.println(response.toString());
-            }
-        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println(error.toString());
-            }
-        }) {
-        };
-        ExampleRequestQueue.add(ExampleStringRequest);
         if (!DecimalValue.getText().toString().equals("")) {
-            convertvalue.setText(DecimalValue.getText().toString());
+            //getting
+            final Double NeoValue = Double.parseDouble(DecimalValue.getText().toString());
+
+            String url = "https://api.coinmarketcap.com/v1/ticker/neo/";
+            final RequestQueue ExampleRequestQueue = Volley.newRequestQueue(getApplicationContext());
+            StringRequest ExampleStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    System.out.println(response.toString());
+                    try {
+                        JSONArray jarray = new JSONArray(response.toString());
+                        JSONObject jobject = jarray.getJSONObject(0);
+                        Double usdPrice = Double.parseDouble(jobject.getString("price_usd"));
+                        Double btcPrice = Double.parseDouble(jobject.getString("price_btc"));
+                        System.out.println("It is : " + btcPrice + " " + usdPrice);
+                        String display = "PRICE RATES:\n\t\t\tUSD PRICE: " + usdPrice + " \n\t\t\tBTC PRICE: " + btcPrice + "\n\nConversion: " + NeoValue + "NEO " + "\n\t\t\tUSD PRICE: " + NeoValue * usdPrice + " \n\t\t\tBTC PRICE: " + NeoValue * btcPrice;
+                        convertvalue.setText(display);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    System.out.println(error.toString());
+                }
+            }) {
+            };
+            ExampleRequestQueue.add(ExampleStringRequest);
             DecimalValue.setText("");
         }
     }
